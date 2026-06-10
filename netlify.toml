@@ -3,5 +3,5 @@
   publish = "dist"   # or "build" if using CRA
 
 [build.environment]
-  NODE_VERSION = "22.16.5"
+  NODE_VERSION = "20"
   BUN_VERSION = "1.1.0"
