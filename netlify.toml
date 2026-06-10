@@ -1,0 +1,7 @@
+[build]
+  command = "bun run build"
+  publish = "dist"   # or "build" if using CRA
+
+[build.environment]
+  NODE_VERSION = "22.16.5"
+  BUN_VERSION = "1.1.0"
