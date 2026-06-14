@@ -29,4 +29,5 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+.vercel
 *.sw?
