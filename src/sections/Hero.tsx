@@ -1,11 +1,12 @@
 import { ArrowRight, ShieldCheck, Flame, Droplet, Wrench, MapPin } from "lucide-react";
-import heroBg from "../../assets/hero-atmosphere.jpg";
-import splashGreen from "../../assets/splash-green.png";
-import splashPink from "../../assets/splash-pink.png";
-import greenBottle from "../../assets/coolant-green-front.asset.json";
-import pinkBottle from "../../assets/coolant-pink-front.asset.json";
+import heroBg from "@/assets/hero-atmosphere.jpg";
+import splashGreen from "@/assets/splash-green.png";
+import splashPink from "@/assets/splash-pink.png";
+import greenBottleJson from "@/assets/coolant-green-front.asset.json";
+import pinkBottleJson from "@/assets/coolant-pink-front.asset.json";
 
-const badges = [
+// Small trust badges shown below the CTA buttons
+const TRUST_BADGES = [
   { icon: ShieldCheck, label: "Anti Rust" },
   { icon: Droplet, label: "Anti Foam" },
   { icon: Flame, label: "126°C Protection" },
@@ -16,7 +17,7 @@ const badges = [
 export function Hero() {
   return (
     <section id="home" className="relative pt-28 lg:pt-32 pb-24 overflow-hidden">
-      {/* Background */}
+      {/* Background image with gradient fade */}
       <div className="absolute inset-0 -z-10">
         <img
           src={heroBg}
@@ -26,15 +27,21 @@ export function Hero() {
           height={1280}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        {/* Racing light streaks */}
+        {/* Animated racing light streaks */}
         <div className="absolute inset-x-0 top-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 animate-streak" />
-        <div className="absolute inset-x-0 top-2/3 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-40 animate-streak" style={{ animationDelay: "2s" }} />
+        <div
+          className="absolute inset-x-0 top-2/3 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-40 animate-streak"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        {/* Left */}
+        {/* Left column: headline, description, CTAs */}
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs tracking-[0.25em] uppercase text-primary" style={{ fontFamily: "Exo 2" }}>
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs tracking-[0.25em] uppercase text-primary"
+            style={{ fontFamily: "Exo 2" }}
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             Premium Cooling Technology
           </div>
@@ -54,7 +61,8 @@ export function Hero() {
           >
             ACE MOTO Premium Radiator Coolant — 1:3 high-concentration formula
             with anti-rust and anti-foam additives. Protects every engine, every
-            make, every model, up to <span className="text-foreground font-semibold">126°C</span>.
+            make, every model, up to{" "}
+            <span className="text-foreground font-semibold">126°C</span>.
           </p>
 
           {/* Spec chips */}
@@ -64,7 +72,7 @@ export function Hero() {
             <SpecChip label="Concentration" value="1:3" />
           </div>
 
-          {/* CTAs */}
+          {/* CTA buttons */}
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#products"
@@ -85,29 +93,32 @@ export function Hero() {
 
           {/* Trust badges */}
           <div className="mt-10 flex flex-wrap gap-x-5 gap-y-3">
-            {badges.map((b) => (
-              <div key={b.label} className="flex items-center gap-2 text-xs text-muted-foreground uppercase tracking-wider" style={{ fontFamily: "Exo 2" }}>
-                <b.icon className="h-3.5 w-3.5 text-primary" />
-                {b.label}
+            {TRUST_BADGES.map((badge) => (
+              <div
+                key={badge.label}
+                className="flex items-center gap-2 text-xs text-muted-foreground uppercase tracking-wider"
+                style={{ fontFamily: "Exo 2" }}
+              >
+                <badge.icon className="h-3.5 w-3.5 text-primary" />
+                {badge.label}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right — floating bottles */}
+        {/* Right column: floating product bottles */}
         <div className="relative h-[520px] lg:h-[640px]">
-          {/* Radial glow */}
+          {/* Radial color glows */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,oklch(0.86_0.24_145/0.18),transparent_55%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,oklch(0.65_0.26_350/0.18),transparent_55%)]" />
 
-          {/* Splash green */}
+          {/* Splash overlays (decorative) */}
           <img
             src={splashGreen}
             alt=""
             aria-hidden="true"
             className="absolute -left-10 top-10 w-[420px] opacity-60 mix-blend-screen pointer-events-none animate-pulse-glow"
           />
-          {/* Splash pink */}
           <img
             src={splashPink}
             alt=""
@@ -120,7 +131,7 @@ export function Hero() {
           <div className="absolute left-2 sm:left-6 top-4 lg:top-10 w-[58%] animate-float">
             <div className="absolute inset-0 -z-10 blur-3xl bg-primary/30 rounded-full scale-90" />
             <img
-              src={greenBottle.url}
+              src={greenBottleJson.url}
               alt="ACE MOTO Premium Green Radiator Coolant"
               className="w-full h-auto drop-shadow-[0_30px_60px_oklch(0.86_0.24_145/0.35)]"
               width={800}
@@ -135,7 +146,7 @@ export function Hero() {
           >
             <div className="absolute inset-0 -z-10 blur-3xl bg-accent/30 rounded-full scale-90" />
             <img
-              src={pinkBottle.url}
+              src={pinkBottleJson.url}
               alt="ACE MOTO Premium Pink Radiator Coolant"
               className="w-full h-auto drop-shadow-[0_30px_60px_oklch(0.65_0.26_350/0.35)]"
               width={800}
@@ -143,14 +154,34 @@ export function Hero() {
             />
           </div>
 
-          {/* Floating spec card */}
+          {/* Floating spec cards (hidden on small screens) */}
           <div className="hidden sm:flex absolute right-2 top-6 glass-card rounded-lg px-4 py-3 flex-col gap-1 text-right">
-            <div className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase" style={{ fontFamily: "Exo 2" }}>Boiling Point</div>
-            <div className="text-2xl text-primary text-glow-neon" style={{ fontFamily: "Bebas Neue" }}>265°F</div>
+            <div
+              className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase"
+              style={{ fontFamily: "Exo 2" }}
+            >
+              Boiling Point
+            </div>
+            <div
+              className="text-2xl text-primary text-glow-neon"
+              style={{ fontFamily: "Bebas Neue" }}
+            >
+              265°F
+            </div>
           </div>
           <div className="hidden sm:flex absolute left-2 bottom-6 glass-card rounded-lg px-4 py-3 flex-col gap-1">
-            <div className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase" style={{ fontFamily: "Exo 2" }}>Concentration</div>
-            <div className="text-2xl text-accent text-glow-magenta" style={{ fontFamily: "Bebas Neue" }}>1 : 3</div>
+            <div
+              className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase"
+              style={{ fontFamily: "Exo 2" }}
+            >
+              Concentration
+            </div>
+            <div
+              className="text-2xl text-accent text-glow-magenta"
+              style={{ fontFamily: "Bebas Neue" }}
+            >
+              1 : 3
+            </div>
           </div>
         </div>
       </div>
@@ -158,10 +189,13 @@ export function Hero() {
   );
 }
 
+// Small display chip showing a spec label/value pair (e.g. "Protects | 126°C")
 function SpecChip({ label, value }: { label: string; value: string }) {
   return (
     <div className="px-3 py-2 rounded-md glass-card" style={{ fontFamily: "Exo 2" }}>
-      <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mr-2">{label}</span>
+      <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mr-2">
+        {label}
+      </span>
       <span className="text-sm font-bold text-foreground">{value}</span>
     </div>
   );

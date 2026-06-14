@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AceSite } from "@/components/site/AceSite";
+import { HomePage } from "@/pages/HomePage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -10,9 +10,5 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Anti-rust, anti-foam, 1:3 high concentration. Protects up to 126°C. UAE Technology." },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
-
-function Index() {
-  return <AceSite />;
-}
